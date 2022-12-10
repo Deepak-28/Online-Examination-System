@@ -1,0 +1,66 @@
+{% extends 'examapp/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %} <title>Staff sigup</title> {% endblock title %}
+    </head>
+<body>
+    {% block content %}
+    <div class="container d-flex justify-content-center">
+        <div class="card col-12 col-md-7">
+            <div class="card-header">
+                <h2 class="center text-success text-center">Staff signup</h2>               
+            </div>
+            <div class="card-body">
+                <form action="/do_staff_signup" method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                     
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Username" name="username">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                    </div>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                        </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Address" name="address">
+                            <div class="input-group-text">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                    </div>
+        
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-block" >Sign Up Student</button>
+                    </div><!-- /.col -->
+                
+                    <div class="row">
+                        {% if messages %}
+                        <div class="col-12">
+                            {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+      
+</body>
+</html> 
+

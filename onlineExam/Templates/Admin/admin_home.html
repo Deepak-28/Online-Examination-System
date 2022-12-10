@@ -1,0 +1,85 @@
+{% extends 'examapp/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %} 
+        <title>Admin Home</title> 
+        {% endblock title %}
+    </head>
+
+<body>
+    {% block content %}
+    {% include 'examapp/navbar.html' %}
+    
+    {{staff}}
+    <div class="container">
+        <div>
+            <h4>WELCOME {{request.user.username}}</h4>
+        <a href="{% url 'logout' %}" class="btn btn-danger" class="ms-5">Logout</a>
+        </div>
+    <hr>
+        <div class="row mt-3" >
+            <div class="col-6 col-md-4 mt-3" >
+                <div class="card text-center text-white bg-primary" id="mycard">
+                   <div class="card-header">
+                        <h4>STAFF</h4>
+                   </div>
+                   <div class="card-body">
+                        <h5>Total Staff:{{staff_count}}</h5>
+                   </div>
+                   <div class="card-footer ">
+                        <a href="{% url 'admin_staff_view' %}" class= "btn btn-transperent text-white">view staffs <i class="fas fa-arrow-circle-right"></i></a>
+                   </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 mt-3">
+                <div class="card text-center text-white bg-success" id="mycard">
+                   <div class="card-header">
+                        <h4>STUDENT</h4>
+                   </div>
+                   <div class="card-body">
+                        <h5>Total Students:{{student_count}}</h5>
+                   </div>
+                   <div class="card-footer ">
+                        <a href="{% url 'admin_student_view' %}" class= "btn btn-transperent text-white">view students <i class="fas fa-arrow-circle-right"></i></a>
+                   </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 mt-3">
+                <div class="card text-center text-white bg-secondary" id="mycard">
+                   <div class="card-header">
+                        <h4>ADD STUDENT</h4>
+                   </div>
+                   <div class="card-body">
+                        <h5>Here you can add students</h5>
+                   </div>
+                   <div class="card-footer ">
+                        <a href="{% url 'add_student_form' %}" class= "btn btn-transperent text-white">Add students <i class="fas fa-plus"></i></a>
+                   </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 mt-3">
+                <div class="card text-center text-white bg-info" id="mycard">
+                   <div class="card-header">
+                        <h4>QUESTION</h4>
+                   </div>
+                   <div class="card-body">
+                        <h5>Total Questions:{{question_count}}</h5>
+                   </div>
+                   <div class="card-footer ">
+                        <a href="{% url 'question_upload' %}" class= "btn btn-transperent text-white">Add questions <i class="fas fa-plus"></i></a>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    
+        
+    {% endblock content %}
+
+   
+</body>
+</html>

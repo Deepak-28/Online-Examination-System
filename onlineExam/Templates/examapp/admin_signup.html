@@ -1,0 +1,55 @@
+{% extends 'examapp/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %} <title>Admin sigup</title> {% endblock title %}
+    </head>
+<body>
+{% block content %}
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="center text-success text-center">Admin Signup</h4>
+      </div>
+      <div class="card-body">
+        <form action="/do_admin_signup" method="post">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            <input type="name" class="form-control" placeholder="Enter UserName" name="name">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Enter EmailID" name="email">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success btn-block" >Signup</button>
+        </div>
+        <div class="row">
+          {% if messages %}
+         <div class="col-12">
+            {% for message in messages %}
+            {% if message.tags == 'error' %}
+            <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+</body>

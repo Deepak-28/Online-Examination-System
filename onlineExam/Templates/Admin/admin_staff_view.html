@@ -1,0 +1,66 @@
+{% extends 'examapp/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %} 
+        <title>Admin Staff View</title> 
+        {% endblock title %}
+    </head>
+
+<body>
+    {% block content %}
+    <div>
+        <input type="text" id="myinput" onkeyup="myfunction()">
+    </div>
+    <div class="table-responsive-sm">
+        <table class="table table-bordered border-dark bg-white" id="mytable">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Address</th>
+                <th>Date Joined</th>
+                <th>Last Loging</th>
+                <th>Remove Staff</th>
+            </thead>
+            <tr>
+                {% for i in staff_list %}
+                <td>{{i.id}}</td>
+                <td>{{i.admin.username}}</td>
+                <td>{{i.admin.email}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.admin.date_joined}}</td>
+                <td>{{i.admin.last_login}}</td>
+                
+                <td><a href="/delete/{{i.admin_id}}" class="btn btn-danger btn-sm">Remove</a></td>
+    
+            </tr>
+            {% endfor %}
+        </table>
+    
+    </div>
+<script>
+    function myfunction() {
+        var input, filter, table, tr, td, i , txtvalue;
+        input = document.getElementById("myinput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("mytable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td") [1];
+            if (td) {
+                txtvalue = td.textContent || td.innerText;
+                if (txtvalue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+    {% endblock content %}
+
+   
+</body>
+</html>

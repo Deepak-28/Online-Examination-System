@@ -1,0 +1,40 @@
+<html>
+<head>
+</head>
+<body>
+    {% block navbar %}
+    <div>
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand fw-bold">BHAGAWAN MAHAVEER FOUNDATION</a>
+                <!-- NAVBAR TOGGLE BUTTON -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a href=" {% url 'home' %} " class="nav-link active">HOME</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="signup_admin" class="nav-link active">ADMIN SIGNUP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="signup_staff" class="nav-link active">STAFF SIGNUP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="signup_student" class="nav-link active">STUDENT SIGNUP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">RESULT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {% endblock navbar %}
+
+
+</body>
+</html>

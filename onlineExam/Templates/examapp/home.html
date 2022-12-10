@@ -1,0 +1,40 @@
+{% extends 'examapp/base.html' %}
+<head>
+    {% block title %}
+    <title>Home</title>
+    {% endblock title %}
+</head>
+<body>
+
+    {% block content %}
+    {% include 'examapp/navbar.html' %}
+
+    <div class="container mt-5">
+        {% comment %} STUDENT LOGIN FIELD {% endcomment %}
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="text-center text-white bg-success">
+                    <h2>LOGIN CENTER</h2>
+                </div>
+               
+                {% include 'examapp/login_page.html' %}
+            </div>
+            {% comment %} STAFF LOGIN FIELD {% endcomment %}
+            <div class="col-sm-12 col-md-6">
+                <div class="text-center text-white bg-info">
+                    <h2>STUDENT LOGIN</h2>
+                    
+                </div>
+                <div>
+                    {% include 'Student/student_login_page.html' %}
+                </div>
+                
+            </div>
+        </div>
+
+
+
+        </div>
+    </div>
+    {% endblock content %}
+</body>

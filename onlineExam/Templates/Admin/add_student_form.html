@@ -1,0 +1,121 @@
+{% extends 'examapp/base.html' %}
+<html>
+    <head>
+        {% block title %} 
+        <title>Sudent form</title> 
+        {% endblock title %}
+    </head>
+<body>
+    {% block content %}
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-md-7">
+          <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title text-center">Add Student</h3>
+            </div>
+          <!-- /.card -->
+            <form action="add_student_save" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                    <div class="card-body">
+                            {% for field in form %}
+                        <div class="form-group">
+                          {{ field.errors }}
+                          {{ field.label_tag }}
+                          {{ field }}
+                        </div>
+                        {% endfor %}
+    
+    
+                        <div class="form-group">
+                            {% if messages %}
+                              {% for message in messages %}
+                              {% if message.tags == 'error' %}
+                              <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                              {% endif %}
+                              {% if message.tags == 'success' %}
+                              <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                              {% endif %}
+                              {% endfor %}
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Add student</button>
+                          
+                        </div>
+            </form>
+          </div>
+        </div>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+            $("#email").keyup(function(){
+                var email=$(this).val();
+    
+               if(email!=""){
+                    $.ajax({
+                        url:'{% url 'check_email_exist' %}',
+                        type:'POST',
+                        data:{email:email}
+                    })
+                    .done(function(response){
+                        console.log(response);
+                        if(response=="True"){
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='padding: 5px;color: red;;'>Email Not Available</span>").insertAfter("#email");
+                        }
+                        else{
+                            $(".email_error").remove();
+                            $("<span class='email_error' style='padding: 5px;color: green;'>Email Available</span>").insertAfter("#email");
+                        }
+                    })
+                    .fail(function(){
+                        console.log("failed");
+                    })
+                }
+                else{
+                  $(".email_error").remove();
+                }
+    
+            });
+    
+            $("#username").keyup(function(){
+                var username=$(this).val();
+    
+                if(username!=""){
+                    $.ajax({
+                        url:'{% url 'check_username_exist' %}',
+                        type:'POST',
+                        data:{username:username}
+                    })
+                    .done(function(response){
+                        console.log(response);
+                        if(response=="True"){
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='padding: 5px;color: red;;'>Username Not Available</span>").insertAfter("#username");
+                        }
+                        else{
+                            $(".username_error").remove();
+                            $("<span class='username_error' style='padding: 5px;color: green;'>Username Available</span>").insertAfter("#username");
+                        }
+                    })
+                    .fail(function(){
+                        console.log("failed");
+                    })
+                }
+                else{
+                    $(".username_error").remove();
+                }
+    
+            });
+    
+        });
+    </script>
+    
+    {% endblock content %}
+</body>
+ 
+</html>
+

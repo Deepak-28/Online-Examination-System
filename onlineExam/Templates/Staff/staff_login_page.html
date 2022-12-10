@@ -1,0 +1,60 @@
+{% extends 'examapp/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %} <title>Staff Login Page</title> {% endblock title %}
+    </head>
+    <body>
+        {% block content %}
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="center text-success text-center">Staff Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="doLogin" method="post">
+                                {% csrf_token %}
+                                <div class="input-group mb-3">
+                                    <input type="name" class="form-control" placeholder="Enter UserName" name="name">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-envelope"></span>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                                    <div class="input-group-text">
+                                        <span class="fas fa-lock"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-success btn-block" >LogIn</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            {% if messages %}
+                            <div class="col-12">
+                               {% for message in messages %}
+                               {% if message.tags == 'error' %}
+                               <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                               {% endif %}
+                               {% if message.tags == 'success' %}
+                               <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                               {% endif %}
+                               {% endfor %}
+                             </div>
+                             {% endif %}
+                 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
+    </body>
+</html>
+
+
+

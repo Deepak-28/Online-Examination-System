@@ -1,0 +1,52 @@
+{% extends 'examapp/base.html' %}
+<html>
+    <head>
+        {% block title %}
+        <title>Question Upload</title>
+        {% endblock title %}
+    </head>
+<body>
+    {% block content %}
+    {% include 'examapp/navbar.html' %}
+    <div class="container d-flex justify-content-center">
+        <div class="card col-12 col-md-7">
+            <div class="card-body">
+                <h2 class="center text-info text-center">Add Questions</h2>
+                <form action="question_paper_save" method="post">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Question Name" name="question_name" required>
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Add Your Link" name="url" required>
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                    </div>
+                    <button type="submit" class="btn btn-info ">Add question</button>
+
+                    <div class="row">
+                        {% if messages %}
+                       <div class="col-12">
+                          {% for message in messages %}
+                          {% if message.tags == 'error' %}
+                          <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                          {% endif %}
+                          {% endfor %}
+                        </div>
+                        {% endif %}
+                      </div>
+                </form>
+            </div>
+        </div>
+    </div>
+        
+    <div>
+       
+    </div>
+    {% endblock content %}
+</body>
+</html>
